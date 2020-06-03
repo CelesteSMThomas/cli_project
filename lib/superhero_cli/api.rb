@@ -1,11 +1,9 @@
 class Api
 
     require 'digest'
-    ts = Time.now.to_i.to_s
-    private_key = "d295f2237c7020f8e421413666b78eef6e89295a"
-    public_key = "04d8e95f8efc2398b7b07ee47c5e9483"
-    hash = Digest::MD5.hexdigest(ts + private_key + public_key)
-    BASE_URL = "http://gateway.marvel.com/v1/public/characters?ts=#{ts}&apikey=#{public_key}&hash=#{hash}"
+    TS = Time.now.to_i.to_s
+    HASH = Digest::MD5.hexdigest(TS + ENV['PRIVATE_KEY'] + ENV['PUBLIC_KEY'])
+    BASE_URL = "http://gateway.marvel.com/v1/public/characters?ts=#{TS}&apikey=#{ENV['PUBLIC_KEY']}&hash=#{HASH}"
 
 
     def self.get_characters
@@ -15,18 +13,19 @@ class Api
         data["data"]["results"].each { |superhero| 
             name = superhero["name"] 
             description = superhero["description"]
-            bio_link = superhero["urls"][1]["url"]
+            bio_link = superhero["urls"][0]["url"]
             # bio_link_start = link[0]
             # superhero_name_link = link[1].split(")")[0]
             # bio_link_ending = link[1].split(")")[1]
             # bio_link = "#{bio_link_start}#{superhero_name_link}#{bio_link_ending}"
             #making the bio_link fully clickable work
             # binding.pry
-            comic_link = superhero["urls"][0]["url"]
+            comic_link = superhero["urls"][-1]["url"]
             image = superhero["thumbnail"]["path"] + ".jpg"
             id = counter
             marvel_id = superhero["id"]
             counter += 1
+            #binding.pry
         Superhero.new(name, description, bio_link, image, comic_link, marvel_id, id)
     }
     end

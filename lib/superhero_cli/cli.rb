@@ -13,6 +13,7 @@ class Cli
         response = print_menu
         id = valid_id?(response)
         superhero = Superhero.find_by_id(id)
+        binding.pry
        print_details(superhero)
        want_more_information?(superhero)
     end
@@ -95,7 +96,7 @@ class Cli
         if response == "yes" || response == "y"
             second_request(superhero)
         elsif response == "no" || response == "n"
-        "Thank you for searching! Be Super! Goodbye"
+        print_goodbye
         exit
         else 
             print_error
