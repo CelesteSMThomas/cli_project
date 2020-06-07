@@ -7,7 +7,7 @@ class Superhero
     def initialize(name, description, bio_link, image, comic_link, marvel_id, id)
         @name = name
        if description == ""
-        @description = "This Superhero does not have a description"
+        @description = "This Superhero does not have a description."
         else
             @description = description
        end
@@ -38,7 +38,7 @@ class Superhero
         self.digital_price = digital_price
     end
 
-    def self.find_by_id(id)
+    def self.find_by_index(id)
         index = id.to_i - 1
         all[index]
         #binding.pry

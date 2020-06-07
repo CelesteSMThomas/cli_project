@@ -11,16 +11,14 @@ class Cli
 
     def main
         response = print_menu
-        id = valid_id?(response)
-        superhero = Superhero.find_by_id(id)
-        binding.pry
+        #id = valid_id?(response)
+        superhero = Superhero.find_by_index(response)
        print_details(superhero)
        want_more_information?(superhero)
     end
 
     def second_request(superhero)
         id = superhero.id
-        #binding.pry
         updated_superhero = get_first_comic(id)
         print_comic_details(updated_superhero)
         print_continue
@@ -49,14 +47,14 @@ class Cli
 
     def print_details(superhero)
         puts "Name: #{superhero.name}"
-        puts "Superhero Description: #{superhero.description}"
-        puts "Image: #{superhero.image}"
-        puts "Bio Link: #{superhero.bio_link}"
-        puts "Comic Link: #{superhero.comic_link}"
+        puts "#{superhero.name}'s Description: #{superhero.description}"
+        puts "#{superhero.name}'s Image: #{superhero.image}"
+        puts "#{superhero.name}'s Biography: #{superhero.bio_link}"
+        puts "Comics #{superhero.name} Appears In: #{superhero.comic_link}"
     end
 
     def print_comic_details(superhero)
-        puts "First Comic #{superhero.name} Appeared In!"
+        puts "First Available Comic For #{superhero.name}!"
         puts "Title: #{superhero.title}"
         puts "Description: #{superhero.comic_description}"
         puts "Page Count: #{superhero.page_count}"
@@ -91,7 +89,7 @@ class Cli
 
 
     def want_more_information?(superhero)
-        puts "Would you like to know the first comic this Superhero appeared in? Please enter yes or no."
+        puts "Would you like to know the first available comic for this Superhero? Please enter yes or no."
         response = gets.strip.downcase
         if response == "yes" || response == "y"
             second_request(superhero)
@@ -101,25 +99,25 @@ class Cli
         else 
             print_error
             sleep 1
-            want_more_information?
+            want_more_information?(superhero)
         end
     end
 
  
 
-    def valid_id?(id)
-        id = id.to_i
-        if id < 1 || id > Superhero.all.size
-            print_error
-            sleep 1
-            main
-        end
-            id
-    end
+    # def valid_id?(id)
+    #     id = id.to_i
+    #     if id < 0 || id > Superhero.all.size
+    #         print_error
+    #         sleep 1
+    #         main
+    #     end
+    #         id
+    # end
 
 
     def get_first_comic(id)
-        Api.get_first_appeared_comic(id)
+        Api.get_first_available_comic(id)
     end
 
 end
