@@ -49,7 +49,6 @@ class Cli
         puts "Name: #{superhero.name}"
         puts "#{superhero.name}'s Description: #{superhero.description}"
         puts "#{superhero.name}'s Image: #{superhero.image}"
-        puts "#{superhero.name}'s Biography: #{superhero.bio_link}"
         puts "Comics #{superhero.name} Appears In: #{superhero.comic_link}"
     end
 

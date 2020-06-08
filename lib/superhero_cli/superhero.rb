@@ -1,17 +1,16 @@
 class Superhero 
-    attr_reader :name, :description, :bio_link, :image, :comic_link, :marvel_id, :id
+    attr_reader :name, :description, :image, :comic_link, :marvel_id, :id
     attr_accessor :title, :comic_description, :page_count, :available_copies, :purchase_link, :print_price, :digital_price
     @@all = []
     @@choices = {}
 
-    def initialize(name, description, bio_link, image, comic_link, marvel_id, id)
+    def initialize(name, description, image, comic_link, marvel_id, id)
         @name = name
        if description == ""
         @description = "This Superhero does not have a description."
         else
             @description = description
        end
-        @bio_link = bio_link
         @comic_link = comic_link
         @image = image
         @marvel_id = marvel_id

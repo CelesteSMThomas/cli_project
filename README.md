@@ -23,8 +23,10 @@ Next run bin/run which will activate the program.
 
 Make a selection of the super hero you are interested in by number and press enter.
 
-You will receive back the following information; Super-Hero name, description, image, biography, and a link to all the comics that Super-Hero has appeared in.
+You will receive back the following information; Super-Hero name, description, image,and a link to all the comics that Super-Hero has appeared in.
 
-Next you will receive the option to learn about the first available comic for this Super-Hero. If you select yes you will then receive that comic's title, page count, copies available
+Next you will receive the option to learn about the first available comic for this Super-Hero. If you select yes you will then receive that comic's title, page count, copies available.
+
+You're user will have the option to continue searching more superheros, or exiting the program.
 
 

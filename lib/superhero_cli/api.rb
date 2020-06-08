@@ -13,14 +13,12 @@ class Api
         data["data"]["results"].each { |superhero| 
             name = superhero["name"] 
             description = superhero["description"]
-            bio_link = superhero["urls"][0]["url"]
             comic_link = superhero["urls"][-1]["url"]
             image = superhero["thumbnail"]["path"] + ".jpg"
             id = counter
             marvel_id = superhero["id"]
             counter += 1
-           
-        Superhero.new(name, description, bio_link, image, comic_link, marvel_id, id)
+        Superhero.new(name, description, image, comic_link, marvel_id, id)
     }
     res = RestClient.get(BASE_URL + "&limit=100&offset=100")
         data = JSON.parse(res.body)
@@ -28,14 +26,13 @@ class Api
         data["data"]["results"].each { |superhero| 
             name = superhero["name"] 
             description = superhero["description"]
-            bio_link = superhero["urls"][0]["url"]
             comic_link = superhero["urls"][-1]["url"]
             image = superhero["thumbnail"]["path"] + ".jpg"
             id = counter
             marvel_id = superhero["id"]
             counter += 1
            
-        Superhero.new(name, description, bio_link, image, comic_link, marvel_id, id)
+        Superhero.new(name, description, image, comic_link, marvel_id, id)
     }
     end
 
