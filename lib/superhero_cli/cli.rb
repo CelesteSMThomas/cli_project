@@ -64,7 +64,7 @@ class Cli
     end
 
     def print_continue
-        puts "Would you like to search again? (yes/no)"
+        puts "Would you like to search for a new Superhero? (yes/no)"
         response = gets.strip.downcase
         if response == "yes" || response == "y"
             run
@@ -93,8 +93,7 @@ class Cli
         if response == "yes" || response == "y"
             second_request(superhero)
         elsif response == "no" || response == "n"
-        print_goodbye
-        exit
+        print_continue
         else 
             print_error
             sleep 1
